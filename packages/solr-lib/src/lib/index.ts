@@ -1,0 +1,1 @@
+export { default as MyButton } from './Components/MyButton/MyButton';
