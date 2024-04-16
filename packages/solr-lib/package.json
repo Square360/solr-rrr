@@ -29,6 +29,10 @@
     "vite": "^5.2.0",
     "vite-plugin-dts": "^3.8.3"
   },
+  "peerDependencies": {
+    "react": "^18.x",
+    "react-dom": "^18.x"
+  },
   "main": "./dist/solr-lib.umd.js",
   "module": "./dist/solr-lib.es.js",
   "types": "./dist/lib/index.d.ts",
