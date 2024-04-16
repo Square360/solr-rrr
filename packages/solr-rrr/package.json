@@ -13,7 +13,9 @@
   },
   "peerDependencies": {
     "react": "^18.x",
-    "react-dom": "^18.x"
+    "react-dom": "^18.x",
+    "redux-observable": "^3.0.0-rc.2",
+    "rxjs": "^7.8.1"
   },
   "main": "./dist/solr-rrr.umd.js",
   "module": "./dist/solr-rrr.es.js",
@@ -26,5 +28,12 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "devDependencies": {},
+  "dependencies": {
+    "react": "^18.x",
+    "react-dom": "^18.x",
+    "redux-observable": "^3.0.0-rc.2",
+    "rxjs": "^7.8.1"
+  }
 }
