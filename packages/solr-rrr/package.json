@@ -15,13 +15,13 @@
     "react": "^18.x",
     "react-dom": "^18.x"
   },
-  "main": "./dist/solr-lib.umd.js",
-  "module": "./dist/solr-lib.es.js",
+  "main": "./dist/solr-rrr.umd.js",
+  "module": "./dist/solr-rrr.es.js",
   "types": "./dist/lib/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/solr-lib.es.js",
-      "require": "./dist/solr-lib.umd.js"
+      "import": "./dist/solr-rrr.es.js",
+      "require": "./dist/solr-rrr.umd.js"
     }
   },
   "files": [

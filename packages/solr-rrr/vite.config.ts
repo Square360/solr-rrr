@@ -14,9 +14,9 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, 'src/lib/index.ts'),
-      name: 'SolrLib',
+      name: 'SolrRRR',
       formats: ['es', 'umd'],
-      fileName: (format) => `solr-lib.${format}.js`,
+      fileName: (format) => `solr-rrr.${format}.js`,
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
