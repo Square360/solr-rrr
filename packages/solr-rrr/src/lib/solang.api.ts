@@ -49,7 +49,7 @@ export const prepareQuery = function(query: ISolrQuery) {
 
   const params: any = {...query};
 
-  if (params.filter === {}) {
+  if (Object.keys(params.filter).length === 0) {
     delete params.filter;
   }
 

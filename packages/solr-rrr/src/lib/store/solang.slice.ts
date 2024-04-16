@@ -78,10 +78,10 @@ export const pagerReset = (alias: string, existingParams: ISolangParamList, subm
 
   if (alias && alias !== "") {
     const filteredExistingParams = Object.fromEntries(
-        Object.entries(existingParams).filter(([key, value]) => key !== alias)
+        Object.entries(existingParams).filter(([key, _value]) => key !== alias)
     );
     const filteredSubmittedParams = Object.fromEntries(
-        Object.entries(submittedParams).filter(([key, value]) => key !== alias)
+        Object.entries(submittedParams).filter(([key, _value]) => key !== alias)
     );
 
     if (JSON.stringify(filteredExistingParams) !== JSON.stringify(filteredSubmittedParams)) {
@@ -250,10 +250,10 @@ export const SolangSlice = createSlice({
 
     /**
      * Stores a query. sendQueryEpic will then initiate the solr request and store result in resultsReceived
-     * @param state
+     * @param _state
      * @param action
      */
-    sendQuery: (state: SolangState, action: PayloadAction<iSendQueryPayload>) => {
+    sendQuery: (_state: SolangState, action: PayloadAction<iSendQueryPayload>) => {
       logger('sendQuery reducer', action);
     },
 
@@ -269,10 +269,11 @@ export const SolangSlice = createSlice({
     },
 
     /**
-     * Triggers a
-     * @param state
+     * Triggers a refresh without changing data.
+     * @param _state
+     * @param _action
      */
-    refreshResults: (state: SolangState, action: PayloadAction<iRefreshResultsPayload>) => {
+    refreshResults: (_state: SolangState, _action: PayloadAction<iRefreshResultsPayload>) => {
       logger('refreshingData');
     },
 

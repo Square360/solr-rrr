@@ -1,5 +1,6 @@
 import { ISimplePagerState, simplePagerProcessParams, simplePagerProcessQuery } from "./SimplePager";
 import { createEmptySolrQuery } from "../store/solang.slice";
+import {SolangAppConfigDefaults} from "../solang.types.ts";
 
 describe('SimpleSearch', () => {
 
@@ -15,6 +16,7 @@ describe('SimpleSearch', () => {
           query: createEmptySolrQuery(),
           endpoint: 'http://localhost:8983/solr/solang/',
           params: {},
+          config: SolangAppConfigDefaults,
           filters: {
             [F_ALIAS]: {
               config: {

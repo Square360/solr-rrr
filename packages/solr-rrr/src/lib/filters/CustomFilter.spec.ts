@@ -1,5 +1,6 @@
 import {createEmptySolrQuery} from "../store/solang.slice";
 import {customFilterProcessParams, customFilterProcessQuery} from "./CustomFilter";
+import {SolangAppConfigDefaults} from "../solang.types.ts";
 
 describe('SimpleFilter', () => {
 
@@ -15,6 +16,7 @@ describe('SimpleFilter', () => {
           query: createEmptySolrQuery(),
           endpoint: 'http://localhost:8983/solr/solang/',
           params: {},
+          config: SolangAppConfigDefaults,
           filters: {
             [F_ALIAS]: {
               config: {

@@ -1,6 +1,6 @@
-import { ISortState, sortProcessParams, sortProcessQuery } from "./Sort";
+import { sortProcessParams, sortProcessQuery } from "./Sort";
 import { createEmptySolrQuery } from "../store/solang.slice";
-import { SolangState } from "../solang.types";
+import {SolangAppConfigDefaults, SolangState} from "../solang.types";
 
 describe('Sort Filter ', () => {
 
@@ -16,6 +16,7 @@ describe('Sort Filter ', () => {
           query: createEmptySolrQuery(),
           endpoint: 'http://localhost:8983/solr/solang/',
           params: {},
+          config: SolangAppConfigDefaults,
           filters: {},
           response: {
             responseHeader: {},
