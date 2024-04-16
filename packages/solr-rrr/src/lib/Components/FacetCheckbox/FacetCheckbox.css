@@ -1,0 +1,13 @@
+.facet-cb {
+  border: 1px solid #eee;
+  padding: 1em;
+  text-align: left; }
+  .facet-cb__list {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 0;
+    list-style-type: none; }
+  .facet-cb__list-item {
+    display: inline-block;
+    max-width: 250px; }

@@ -1,0 +1,13 @@
+.solang-facet {
+  border: 1px solid #eee;
+  padding: 1em;
+  text-align: left; }
+  .solang-facet__list {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 0;
+    list-style-type: none; }
+  .solang-facet__list-item {
+    display: inline-block;
+    max-width: 250px; }

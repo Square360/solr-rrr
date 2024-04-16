@@ -13,9 +13,7 @@
   },
   "peerDependencies": {
     "react": "^18.x",
-    "react-dom": "^18.x",
-    "redux-observable": "^3.0.0-rc.2",
-    "rxjs": "^7.8.1"
+    "react-dom": "^18.x"
   },
   "main": "./dist/solr-rrr.umd.js",
   "module": "./dist/solr-rrr.es.js",
@@ -29,10 +27,14 @@
   "files": [
     "dist"
   ],
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "vite-plugin-dts": "^3.8.3"
+  },
   "dependencies": {
     "react": "^18.x",
     "react-dom": "^18.x",
+    "react-redux": "^9.1.1",
     "redux-observable": "^3.0.0-rc.2",
     "rxjs": "^7.8.1"
   }
