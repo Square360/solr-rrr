@@ -122,8 +122,6 @@ export const facetFilterGetCountsFromState = (state: SolangState, appId: string,
   return facetFilterGetCountsFromAppState(app, filterAlias);
 }
 
-
-
 export const facetFilterGetCountsFromAppState = (app: ISolangApp, filterAlias: string): IFormattedFacetOption[] => {
   const filter = getFilterFromApp(app, filterAlias);
   let facetOptions: { [key: string]: number } = {};

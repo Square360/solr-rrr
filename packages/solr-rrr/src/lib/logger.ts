@@ -1,6 +1,6 @@
 
 const logger = (...args: any[]) => {
-  if (process.env.REACT_APP_PRINT_DEBUG || false) {
+  if (import.meta.env.VITE_PRINT_DEBUG) {
     console.log(args);
   }
 }

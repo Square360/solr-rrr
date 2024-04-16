@@ -5,7 +5,9 @@ import {
   // Helper functions
   getAppFromState,
   getFilterFromState,
+  getFilterFromApp,
   createEmptySolrQuery,
+
   // Filters
   createApp,
   setParam,
@@ -14,23 +16,27 @@ import {
   sendQuery,
   refreshResults,
   resultsReceived,
+  processDateRangeFilter,
   processFacetFilter,
+  processOptionsList,
   processSimpleFilter,
   processCustomFilter,
   processPager,
   processSort
-} from './store/solang.slice';
+} from './lib/store/solang.slice';
 
-import { SolangEpic }  from './store/solang.epic';
+import {facetFilterGetCountsFromAppState} from './lib/filters/FacetFilter.ts';
 
-import { createSolrQueryObs, prepareQuery } from "./solang.api";
+import { SolangEpic }  from './lib/store/solang.epic';
 
-import FacetCheckbox from "./components/FacetCheckbox/FacetCheckbox";
-import SolangFacet from './components/SolangFacet/SolangFacet';
-import SimplePager from "./components/SimplePager/SimplePager";
-import SortSelect from "./components/SortSelect/SortSelect";
-import SortRadio from "./components/SortRadio/SortRadio";
-import OptionsList from "./components/OptionsList/OptionsList";
+import { createSolrQueryObs, prepareQuery } from "./lib/solang.api";
+import DateRange from "./lib/components/DateRange/DateRange.tsx";
+import FacetCheckbox from "./lib/components/FacetCheckbox/FacetCheckbox";
+import SolangFacet from './lib/components/SolangFacet/SolangFacet';
+import SimplePager from "./lib/components/SimplePager/SimplePager";
+import SortSelect from "./lib/components/SortSelect/SortSelect";
+import SortRadio from "./lib/components/SortRadio/SortRadio";
+import OptionsList from "./lib/components/OptionsList/OptionsList";
 
 import {
   // Types
@@ -42,8 +48,11 @@ import {
   iSendQueryPayload,
   IResultsReceivedPayload,
   IProcessFilterPayload
-} from './store/solang.slice';
+} from './lib/store/solang.slice';
 
+import {
+  ISolrQuery
+} from './lib/solang.types.ts'
 
 export {
   SolangEpic,
@@ -52,11 +61,13 @@ export {
   SolangSlice,
   getAppFromState,
   getFilterFromState,
+  getFilterFromApp,
   createEmptySolrQuery,
   // Helper functions
   createSolrQueryObs,
   prepareQuery,
   createApp,
+  facetFilterGetCountsFromAppState,
   // App Reducers
   setParam,
   setParams,
@@ -66,12 +77,15 @@ export {
   resultsReceived,
   // Filter Reduces
   processFacetFilter,
+  processDateRangeFilter,
+  processOptionsList,
   processSimpleFilter,
   processCustomFilter,
   processPager,
   processSort,
   // Components
   FacetCheckbox,
+  DateRange,
   OptionsList,
   SolangFacet,
   SortSelect,
@@ -81,6 +95,7 @@ export {
 
 // Types
 export type {
+  ISolrQuery,
   ISolangState,
   ICreateAppPayload,
   ISetParamsPayload,
