@@ -1,9 +1,10 @@
-import { ChangeEvent } from "react";
+import {ChangeEvent, useId, useState} from "react";
 import { useDispatch } from 'react-redux'
 import { setParam} from "../../store/solang.slice";
 import {
   IFacetFilterState, IFormattedFacetOption
 } from "../../filters/FacetFilter";
+import FacetCheckboxItem from "./FacetCheckboxItem.tsx";
 
 // import './FacetCheckbox.scss';
 
@@ -11,6 +12,7 @@ interface MyProps {
   appId: string,
   filterState: IFacetFilterState,
   facetCounts: IFormattedFacetOption[],
+  expandable?: number
 }
 
 /**
@@ -18,16 +20,25 @@ interface MyProps {
  * @param appId
  * @param filterState
  * @param facetCounts
+ * @param expandable
  * @constructor
  */
-const FacetCheckbox = ({appId, filterState, facetCounts}: MyProps) => {
+const FacetCheckbox = ({appId, filterState, facetCounts, expandable}: MyProps) => {
 
   const CLASS = 'solang-facet-cb';
   const dispatch = useDispatch();
+  const [_isExpanded, setExpanded] = useState(false);
+  const ariaId = useId();
   const alias = filterState.config.alias;
-
   const options = facetCounts || [];
+  const optionsCount = options?.length ?? 0;
+  const valuesCount = filterState.value?.length ?? 0;
+  const expandableMin = Math.max(valuesCount, (expandable ?? 0));
+  const isExpandable = expandable && (optionsCount > expandableMin);
 
+  const expandableMax = isExpandable
+    ? (_isExpanded ? -1 : Math.max(expandable, expandableMin))
+    : -1;
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 
     let newState = [...filterState.value];
@@ -42,31 +53,51 @@ const FacetCheckbox = ({appId, filterState, facetCounts}: MyProps) => {
     }
   }
 
+  const expandClickHandler = () => {
+    setExpanded(!_isExpanded);
+  }
+
+  // Selected items listed first.
+  const sortedOptions = [...options].sort((a, b) => {
+    // If a selected & b not return a
+    const aIsSelected = filterState.value.includes(a.value);
+    const bIsSelected = filterState.value.includes(b.value);
+    if ( aIsSelected && !bIsSelected) {
+      return -1
+    }
+    else if (!aIsSelected && bIsSelected) {
+      return 1
+    }
+    else {
+      return a.value > b.value ? 1 : -1;
+    }
+  });
 
   return (
     <div className={`${CLASS}`}>
       <fieldset className={`${CLASS}__wrapper`}>
         {filterState.config.label && <legend>{filterState.config.label}</legend>}
 
-        <ul className={`${CLASS}__list`}>
-          { options && options.map( (option, index) => (
-            <li className={`${CLASS}__list-item`} key={`${appId}--${alias}--${index}`}>
-              <label  className={`${CLASS}__label`}>
-                <input
-                  type="checkbox"
-                  className={`${CLASS}__input`}
-                  checked={filterState.value.includes(option.value)}
-                  onChange={changeHandler}
-                  value={option.value}
-                  name={alias}/>
-                <span className={`${CLASS}__desc`}>
-                  <span className={`${CLASS}__value`} dangerouslySetInnerHTML={{__html: option.value}}></span>
-                  <span className={`${CLASS}__count`} aria-label={`${option.count} results`}>{option.count}</span>
-                </span>
-              </label>
-            </li>
+        <ul className={`${CLASS}__list`} id={ariaId}>
+          { sortedOptions && sortedOptions.slice(0,expandableMax).map( (option, index) => (
+            <FacetCheckboxItem
+                key={`${appId}--${alias}--${index}`}
+                baseClass={CLASS}
+                alias={alias}
+                checked={filterState.value.includes(option.value)}
+                option={option}
+                changeHandler={changeHandler}>
+            </FacetCheckboxItem>
           ))}
         </ul>
+
+        { isExpandable && (
+          <button onClick={expandClickHandler}
+                  aria-expanded={_isExpanded}
+                  aria-controls={ariaId}>
+            { _isExpanded ? "View all" : "View less"}
+          </button>
+        )}
 
       </fieldset>
     </div>

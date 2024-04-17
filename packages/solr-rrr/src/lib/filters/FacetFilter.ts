@@ -28,7 +28,7 @@ export interface IFacetFilterConfig {
 export interface IFacetFilterState extends IFilterState {
   // Filter config
   config: IFacetFilterConfig;
-  // The currently filter value
+  // The current filter value
   value: string[];
   // The available facetOptions
   options: IFacetOption[];
@@ -51,7 +51,7 @@ export const facetFilterProcessQuery = function (filterState: IFacetFilterState,
  */
 export function facetFilterAddFacetField ( config: IFacetFilterConfig, query: ISolrQuery ) {
 
-  if ( config.excludeTag === true ) {
+  if ( config.excludeTag ) {
     query['facet.field'].push( `{!ex=${config.alias}}${config.solrField}` );
   }
   else {
@@ -92,6 +92,7 @@ export function facetFilterAddQuery (filterState: IFacetFilterState, query: ISol
 
 /**
  * Processes an option value before adding to query (converts to empty if required)
+ * @param config
  * @param option
  */
 function facetFilterProcessOption (config: IFacetFilterConfig, option: string) {
@@ -137,10 +138,10 @@ export const facetFilterGetCountsFromAppState = (app: ISolangApp, filterAlias: s
     if (app.response.facet_counts.facet_fields[solrField]) {
       const counts = app.response.facet_counts.facet_fields[solrField];
       // NB We are expecting flat array of label1, count1, label2, count2, ...
-      for (let i=0; i < counts.length; i+=2) {
-        const key = counts[i];
-        const count = counts[i+1];
-        facetOptions[key] = counts[count];
+      for (let i=0; (i*2) < counts.length; ++i) {
+        const key = counts[(i*2)];
+        const count = counts[(i*2)+1];
+        facetOptions[key] = count;
       }
     }
   }
@@ -150,7 +151,6 @@ export const facetFilterGetCountsFromAppState = (app: ISolangApp, filterAlias: s
   });
 
   const sortedFacetOptions: IFormattedFacetOption[] = formattedFacetOptions.sort( (a: IFormattedFacetOption, b: IFormattedFacetOption) => {
-
     if (filter.config.sortAlpha) {
       if (a.value < b.value) return -1;
       else if (a.value > b.value) return 1;
