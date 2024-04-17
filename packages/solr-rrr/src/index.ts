@@ -25,7 +25,10 @@ import {
   processSort
 } from './lib/store/solang.slice';
 
-import {facetFilterGetCountsFromAppState} from './lib/filters/FacetFilter.ts';
+import {
+  facetFilterGetCountsFromAppState,
+  IFacetFilterState,
+} from './lib/filters/FacetFilter.ts';
 
 import { SolangEpic }  from './lib/store/solang.epic';
 
@@ -51,7 +54,8 @@ import {
 } from './lib/store/solang.slice';
 
 import {
-  ISolrQuery
+  ISolrQuery,
+  ISolangParamList,
 } from './lib/solang.types.ts'
 
 export {
@@ -97,6 +101,8 @@ export {
 export type {
   ISolrQuery,
   ISolangState,
+  ISolangParamList,
+  IFacetFilterState,
   ICreateAppPayload,
   ISetParamsPayload,
   ISetParamPayload,

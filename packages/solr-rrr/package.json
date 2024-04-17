@@ -3,40 +3,43 @@
   "version": "0.0.4",
   "type": "module",
   "license": "UNLICENSED",
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "ts,tsx,scss",
+      "quiet": false
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "watch_build": "npm-watch build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "prepack": "json -f package.json -I -e \"delete this.dependencies\"",
     "preview": "vite preview",
     "prepublishOnly": "tsc && vite build"
   },
   "peerDependencies": {
-    "@reduxjs/toolkit": "^2.2.3",
     "react": "^18.x",
-    "react-dom": "^18.x",
-    "react-redux": "^9.1.1",
-    "redux-observable": "^3.0.0-rc.2",
-    "rxjs": "^7.8.1",
-    "use-query-params": "^2.2.1"
+    "react-dom": "^18.x"
   },
   "main": "./dist/solr-rrr.umd.js",
   "module": "./dist/solr-rrr.es.js",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/solr-rrr.es.js",
-      "require": "./dist/solr-rrr.umd.js"
-    }
-  },
   "files": [
     "dist"
   ],
   "devDependencies": {
+    "@reduxjs/toolkit": "^2.2.3",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.7",
     "jest": "^29.7.0",
-    "json": "^11.0.0",
+    "npm-watch": "^0.11.0",
+    "react-redux": "^9.1.1",
+    "redux-observable": "^3.0.0-rc.2",
+    "rxjs": "^7.8.1",
+    "use-query-params": "^2.2.1",
     "vite-plugin-dts": "^3.8.3"
   }
 }

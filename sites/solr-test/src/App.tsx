@@ -27,7 +27,7 @@ function App() {
   // Setup the listener for our application parameters on the application route.
   // Any parameters must be registered here if we want to see them in the app.
   const [queryParams, setQuery] = useQueryParams({
-    searchText: withDefault(StringParam, 'Dav'),
+    searchText: withDefault(StringParam, ''),
     country: withDefault(ArrayParam, []),
     city: withDefault(ArrayParam, []),
     page: withDefault(StringParam, '0'),
