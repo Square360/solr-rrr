@@ -14,11 +14,12 @@ import {
   OptionsList,
   DateRange,
 } from 'solr-rrr';
-
-import { RootState } from "../../store/store";
 import PrettyPrintJson from "../../utils/components/PrettyPrintJson/PrettyPrintJson.tsx";
 
-// import './TestSolang.scss';
+import { RootState } from "../../store/store";
+
+import './TestSolang.scss';
+
 
 export const TestSolang = () => {
 
@@ -106,6 +107,7 @@ export const TestSolang = () => {
         appId={APP_ID}
         filterState={getFilterFromApp(searchApp, 'country') as IFacetFilterState}
         facetCounts={facetFilterGetCountsFromAppState(searchApp, 'country')}
+        expandable={5}
         />
 
       <p>Showing {results.length} of {numFound} results. Page {currentPage}</p>
