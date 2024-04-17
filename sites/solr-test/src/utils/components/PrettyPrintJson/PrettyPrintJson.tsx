@@ -1,6 +1,4 @@
-import * as React from "react"
 import './PrettyPrintJson.scss';
-
 const PrettyPrintJson = (props: any) => {
     return (
         <div className={'PrettyPrintJson'}>

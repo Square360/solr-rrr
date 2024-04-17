@@ -7,5 +7,9 @@
     margin: 1em;
     padding: 1em;
     overflow: auto;
+    @media (prefers-color-scheme: dark) {
+      background: #333;
+      border-color: #666;
+    }
   }
 }
