@@ -56,6 +56,15 @@ import {
 import {
   ISolrQuery,
   ISolangParamList,
+  ISolangAppConfig,
+  ISolangApp,
+  ISolrFacetQueries,
+  ISolrFacetField,
+  ISolrFacetFields,
+  ISolrFacetCounts,
+  ISolrResponse,
+  SolangAppList,
+  SolangState,
 } from './lib/solang.types.ts'
 
 export {
@@ -109,5 +118,14 @@ export type {
   IBuildQueryPayload,
   iSendQueryPayload,
   IResultsReceivedPayload,
-  IProcessFilterPayload
+  IProcessFilterPayload,
+  ISolangAppConfig,
+  ISolangApp,
+  ISolrFacetQueries,
+  ISolrFacetField,
+  ISolrFacetFields,
+  ISolrFacetCounts,
+  ISolrResponse,
+  SolangAppList,
+  SolangState,
 };
