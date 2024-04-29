@@ -1,4 +1,4 @@
-import {ChangeEvent, useId, useState} from "react";
+import {ButtonHTMLAttributes, ChangeEvent, useId, useState} from "react";
 import { useDispatch } from 'react-redux'
 import { setParam} from "../../store/solang.slice";
 import {
@@ -53,7 +53,8 @@ const FacetCheckbox = ({appId, filterState, facetCounts, expandable}: MyProps) =
     }
   }
 
-  const expandClickHandler = () => {
+  const expandClickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
     setExpanded(!_isExpanded);
   }
 
@@ -95,7 +96,7 @@ const FacetCheckbox = ({appId, filterState, facetCounts, expandable}: MyProps) =
           <button onClick={expandClickHandler}
                   aria-expanded={_isExpanded}
                   aria-controls={ariaId}>
-            { _isExpanded ? "View all" : "View less"}
+            { _isExpanded ? "View less" : "View all" }
           </button>
         )}
 

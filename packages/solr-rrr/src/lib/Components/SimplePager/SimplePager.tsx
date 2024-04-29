@@ -36,6 +36,7 @@ const SimplePager = ({appId, alias, next='Next', prev='Previous', handleClick}: 
   const isStart = currentPage <= 0;
 
   const nextHandler = (e: React.MouseEvent<Element, MouseEvent>) => {
+    e.preventDefault();
     const newPage = (currentPage < numPages) ? parseInt(currentPage) + 1 : numPages;
     const val = newPage.toString();
     dispatch(setParam({appId: appId, key: alias, value: val}));
@@ -45,6 +46,7 @@ const SimplePager = ({appId, alias, next='Next', prev='Previous', handleClick}: 
   }
 
   const prevHandler = (e: React.MouseEvent<Element, MouseEvent>) => {
+    e.preventDefault();
     const newPage = (currentPage > 0) ? currentPage-1 : 0;
     const val = newPage.toString() ;
     dispatch(setParam({appId: appId, key: alias, value: val}));
