@@ -36,9 +36,6 @@ const FacetCheckbox = ({appId, filterState, facetCounts, expandable}: MyProps) =
   const expandableMin = Math.max(valuesCount, (expandable ?? 0));
   const isExpandable = expandable && (optionsCount > expandableMin);
 
-  const expandableMax = isExpandable
-    ? (_isExpanded ? -1 : Math.max(expandable, expandableMin))
-    : -1;
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 
     let newState = [...filterState.value];
@@ -74,13 +71,20 @@ const FacetCheckbox = ({appId, filterState, facetCounts, expandable}: MyProps) =
     }
   });
 
+  // Reduce options to list of renderable items.
+  const sliceOptions = (options: any[]) => {
+    const expandableMax = isExpandable
+      ? (_isExpanded ? -1 : Math.max(expandable, expandableMin))
+      : options.length;
+    return options.slice(0, expandableMax);
+  }
+
   return (
     <div className={`${CLASS}`}>
       <fieldset className={`${CLASS}__wrapper`}>
         {filterState.config.label && <legend>{filterState.config.label}</legend>}
-
         <ul className={`${CLASS}__list`} id={ariaId}>
-          { sortedOptions && sortedOptions.slice(0,expandableMax).map( (option, index) => (
+          { sortedOptions && sliceOptions(sortedOptions).map( (option, index) => (
             <FacetCheckboxItem
                 key={`${appId}--${alias}--${index}`}
                 baseClass={CLASS}

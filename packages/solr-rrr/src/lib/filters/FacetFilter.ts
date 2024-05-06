@@ -75,7 +75,6 @@ export function facetFilterAddFacetField ( config: IFacetFilterConfig, query: IS
   }
 }
 
-
 export function facetFilterAddQuery (filterState: IFacetFilterState, query: ISolrQuery) {
 
   if (filterState.value.length > 0) {
@@ -138,11 +137,14 @@ export const facetFilterGetCountsFromAppState = (app: ISolangApp, filterAlias: s
     if (app.response.facet_counts.facet_fields[solrField]) {
       const counts = app.response.facet_counts.facet_fields[solrField];
       // NB We are expecting flat array of label1, count1, label2, count2, ...
-      for (let i=0; (i*2) < counts.length; ++i) {
+      for (let i=0; (i*2) < counts.length; i++) {
+        console.log('c' + (i*2) + ' ' +counts.length);
+
         const key = counts[(i*2)];
         const count = counts[(i*2)+1];
         facetOptions[key] = count;
       }
+      console.log(facetOptions)
     }
   }
 
