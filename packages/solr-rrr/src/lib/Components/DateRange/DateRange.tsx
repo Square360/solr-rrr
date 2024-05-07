@@ -12,6 +12,10 @@ interface MyProps {
   maxTo?: string;
   minFrom?: string;
   maxFrom?: string;
+  labels?: {
+    to?: string,
+    from?: string,
+  }
 }
 
 /**
@@ -23,9 +27,10 @@ interface MyProps {
  * @param maxTo
  * @param minFrom
  * @param maxFrom
+ * @param labels
  * @constructor
  */
-const DateRange = ({appId, alias, type, minTo, maxTo, minFrom, maxFrom}: MyProps) => {
+const DateRange = ({appId, alias, type, minTo, maxTo, minFrom, maxFrom, labels={}}: MyProps) => {
 
   const CLASS = 'solang-date-range';
   const dispatch = useDispatch();
@@ -50,12 +55,12 @@ const DateRange = ({appId, alias, type, minTo, maxTo, minFrom, maxFrom}: MyProps
 
   return (
     <div className={CLASS}>
-      <label className={`{$CLASS}__label-from`} htmlFor={`${alias}-from`}>From</label>
+      <label className={`${CLASS}__label-from`} htmlFor={`${alias}-from`}>{labels?.from ?? 'From'}</label>
       <input className={`${CLASS}__from`} id={`${alias}-from`}
              type={type} min={minFrom} max={calcMaxFrom}
              defaultValue={from}
              onChange={handleFromChange} />
-      <label className={`{$CLASS}__label-to`} htmlFor={`${alias}-to`}>To</label>
+      <label className={`${CLASS}__label-to`} htmlFor={`${alias}-to`}>{labels?.to ?? 'To'}</label>
       <input className={`${CLASS}__to`} id={`${alias}-to`}
              type={type} min={calcMinTo} max={maxTo}
              defaultValue={to}

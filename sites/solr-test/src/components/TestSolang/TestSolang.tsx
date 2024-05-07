@@ -102,6 +102,7 @@ export const TestSolang = () => {
         maxFrom={todayAsYYYYMM}
         minTo={'1960-01'}
         maxTo={todayAsYYYYMM}
+        labels={{from:'Fae'}}
       ></DateRange>
       <FacetCheckbox
         appId={APP_ID}
