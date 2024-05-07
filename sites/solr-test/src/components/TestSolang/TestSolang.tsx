@@ -67,6 +67,10 @@ export const TestSolang = () => {
   const today = new Date().toISOString();
   const todayAsYYYYMM = today.substring(0,7);
 
+  const labelMap = {
+    'Argentina': 'Argentina 🏆🏆🏆'
+  } as { [key: string]: string; };
+
   return (
     <div className={'TestSolang'}>
       <PrettyPrintJson data={searchApp.params}/>
@@ -104,10 +108,12 @@ export const TestSolang = () => {
         maxTo={todayAsYYYYMM}
         labels={{from:'Fae'}}
       ></DateRange>
+
       <FacetCheckbox
         appId={APP_ID}
         filterState={getFilterFromApp(searchApp, 'country') as IFacetFilterState}
         facetCounts={facetFilterGetCountsFromAppState(searchApp, 'country')}
+        labelMap={labelMap}
         expandable={5}
         />
 

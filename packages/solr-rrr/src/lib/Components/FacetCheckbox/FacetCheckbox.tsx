@@ -6,13 +6,13 @@ import {
 } from "../../filters/FacetFilter";
 import FacetCheckboxItem from "./FacetCheckboxItem.tsx";
 
-// import './FacetCheckbox.scss';
 
-interface MyProps {
-  appId: string,
-  filterState: IFacetFilterState,
-  facetCounts: IFormattedFacetOption[],
-  expandable?: number
+interface FacetCheckboxProps {
+  appId: string;
+  filterState: IFacetFilterState;
+  facetCounts: IFormattedFacetOption[];
+  expandable?: number;
+  labelMap?: { [key: string]: string; };
 }
 
 /**
@@ -21,9 +21,10 @@ interface MyProps {
  * @param filterState
  * @param facetCounts
  * @param expandable
+ * @param labelMap  Optional map to override labels for certain values.
  * @constructor
  */
-const FacetCheckbox = ({appId, filterState, facetCounts, expandable}: MyProps) => {
+const FacetCheckbox = ({appId, filterState, facetCounts, expandable, labelMap={}}: FacetCheckboxProps) => {
 
   const CLASS = 'solang-facet-cb';
   const dispatch = useDispatch();
@@ -84,16 +85,21 @@ const FacetCheckbox = ({appId, filterState, facetCounts, expandable}: MyProps) =
       <fieldset className={`${CLASS}__wrapper`}>
         {filterState.config.label && <legend>{filterState.config.label}</legend>}
         <ul className={`${CLASS}__list`} id={ariaId}>
-          { sortedOptions && sliceOptions(sortedOptions).map( (option, index) => (
-            <FacetCheckboxItem
+          { sortedOptions && sliceOptions(sortedOptions).map( (option, index) => {
+
+            const label = labelMap[option.value] ?? option.value;
+            return (
+              <FacetCheckboxItem
                 key={`${appId}--${alias}--${index}`}
                 baseClass={CLASS}
                 alias={alias}
                 checked={filterState.value.includes(option.value)}
-                option={option}
+                option={option.value}
+                label={label}
                 changeHandler={changeHandler}>
-            </FacetCheckboxItem>
-          ))}
+              </FacetCheckboxItem>
+            );
+          })}
         </ul>
 
         { isExpandable && (
