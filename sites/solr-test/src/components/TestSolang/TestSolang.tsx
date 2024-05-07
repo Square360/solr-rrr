@@ -19,6 +19,7 @@ import PrettyPrintJson from "../../utils/components/PrettyPrintJson/PrettyPrintJ
 import { RootState } from "../../store/store";
 
 import './TestSolang.scss';
+import FullPager from "solr-rrr/src/lib/components/FullPager/FullPager.tsx";
 
 
 export const TestSolang = () => {
@@ -69,7 +70,6 @@ export const TestSolang = () => {
   return (
     <div className={'TestSolang'}>
       <PrettyPrintJson data={searchApp.params}/>
-
 
       <div className={'row'}>
         <label htmlFor='val'>Param value:</label>
@@ -128,6 +128,7 @@ export const TestSolang = () => {
         </ul>
       )}
 
+      <FullPager appId={APP_ID} alias={'page'} text={{next: '++', prev: '--'}}/>
 
       <SimplePager appId={APP_ID} alias={'page'}/>
 

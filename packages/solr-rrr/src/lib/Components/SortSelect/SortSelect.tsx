@@ -5,8 +5,9 @@ import { ChangeEvent } from "react";
 
 interface MyProps {
   id?: string;
-  appId: string
-  alias: string
+  appId: string;
+  alias: string;
+  inputName?: string;
   next?: string;
   prev?: string;
 }
@@ -15,9 +16,11 @@ interface MyProps {
  * Provides checkbox filter for categories with result counts.
  * @param appId
  * @param alias
+ * @param id
+ * @param inputName
  * @constructor
  */
-const SortSelect = ({appId, alias, id}: MyProps) => {
+const SortSelect = ({appId, alias, id, inputName}: MyProps) => {
 
   const CLASS = 'solang-sort-select';
   const dispatch = useDispatch();
@@ -31,7 +34,12 @@ const SortSelect = ({appId, alias, id}: MyProps) => {
 
   return (
     <div className={CLASS}>
-      <select id={id} className={`${CLASS}__input`} value={defaultValue} onChange={updateHandler}>
+      <select id={id}
+              className={`${CLASS}__input`}
+              value={defaultValue}
+              onChange={updateHandler}
+              name={inputName ?? ''}
+      >
         { filterState.config.options.map(item => (
             <option key={item.value} value={item.value} className={`${CLASS}__option`}>{item.label}</option>
         ))}
