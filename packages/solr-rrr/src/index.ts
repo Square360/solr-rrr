@@ -40,6 +40,7 @@ import SimplePager from "./lib/components/SimplePager/SimplePager";
 import SortSelect from "./lib/components/SortSelect/SortSelect";
 import SortRadio from "./lib/components/SortRadio/SortRadio";
 import OptionsList from "./lib/components/OptionsList/OptionsList";
+import FullPager from "./lib/components/FullPager/FullPager.tsx";
 
 import {
   // Types
@@ -103,7 +104,8 @@ export {
   SolangFacet,
   SortSelect,
   SortRadio,
-  SimplePager
+  SimplePager,
+  FullPager
 };
 
 // Types
