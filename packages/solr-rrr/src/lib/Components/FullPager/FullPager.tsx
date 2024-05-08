@@ -89,8 +89,9 @@ const FullPager = ({appId, alias, text={}, handleClick}: MyProps) => {
         <button className={`${CLASS}__prev`} onClick={(e)=>setPageHandler(e, currentPage-1)}>{text.prev ?? 'Previous'}</button>
       )}
 
-      { pages.map((pageNum,) => (
-        <button className={`${CLASS}__page` + (currentPage == pageNum ? ` ${CLASS}__page-active` : '')}
+      { pages.map((pageNum, index) => (
+        <button key={index}
+                className={`${CLASS}__page` + (currentPage == pageNum ? ` ${CLASS}__page-active` : '')}
                 disabled={currentPage == pageNum}
                 onClick={(e)=>setPageHandler(e, pageNum)}>{pageNum}</button>
       ))}

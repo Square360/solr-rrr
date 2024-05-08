@@ -94,7 +94,7 @@ const FacetCheckbox = ({appId, filterState, facetCounts, expandable, labelMap={}
                 baseClass={CLASS}
                 alias={alias}
                 checked={filterState.value.includes(option.value)}
-                option={option.value}
+                option={option}
                 label={label}
                 changeHandler={changeHandler}>
               </FacetCheckboxItem>

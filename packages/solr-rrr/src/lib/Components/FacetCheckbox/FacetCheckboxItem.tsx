@@ -14,7 +14,7 @@ interface MyProps {
  * Provides Checkbox facet filter
  */
 const FacetCheckboxItem = ({label, option, baseClass, alias, checked, changeHandler}: MyProps) => {
-  const display = label ?? option.value;
+  const displayLabel = label ?? option.value;
   return (
     <li className={`${baseClass}__list-item`}>
       <label  className={`${baseClass}__label`}>
@@ -26,12 +26,13 @@ const FacetCheckboxItem = ({label, option, baseClass, alias, checked, changeHand
           value={option.value}
           name={alias}/>
           <span className={`${baseClass}__desc`}>
-                    <span className={`${baseClass}__value`} dangerouslySetInnerHTML={{__html: display}}></span>
+                    <span className={`${baseClass}__value`} dangerouslySetInnerHTML={{__html: displayLabel}}></span>
                     <span className={`${baseClass}__count`} aria-label={`${option.count} results`}>{option.count}</span>
                   </span>
       </label>
     </li>
-  );
+)
+
 }
 
 export default FacetCheckboxItem;
