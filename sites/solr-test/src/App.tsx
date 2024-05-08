@@ -88,7 +88,7 @@ function App() {
           label: 'Country',
           minCount: 1,
           sortAlpha: true,
-          excludeTag: true
+          excludeTag: true,
         },
         processQueryActions: [
           processFacetFilter.type
@@ -136,7 +136,7 @@ function App() {
         setQuery: setQuery,
         preprocessQuery: preprocessQuery,
         // Specify a pager alias to reset page to zero on parameter changes
-        pagerReset: 'page'
+        pagerReset: 'page',
       },
       params: queryParams as any,
       filters: searchFilters,

@@ -115,7 +115,16 @@ export const TestSolang = () => {
         facetCounts={facetFilterGetCountsFromAppState(searchApp, 'country')}
         labelMap={labelMap}
         expandable={5}
+        selectedFirst={true}
         />
+
+      <FacetCheckbox
+        appId={APP_ID}
+        filterState={getFilterFromApp(searchApp, 'city') as IFacetFilterState}
+        facetCounts={facetFilterGetCountsFromAppState(searchApp, 'city')}
+        labelMap={labelMap}
+        expandable={5}
+      />
 
       <p>Showing {results.length} of {numFound} results. Page {currentPage}</p>
 

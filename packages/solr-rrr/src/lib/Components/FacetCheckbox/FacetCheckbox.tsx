@@ -11,6 +11,7 @@ interface FacetCheckboxProps {
   appId: string;
   filterState: IFacetFilterState;
   facetCounts: IFormattedFacetOption[];
+  selectedFirst?: boolean;
   expandable?: number;
   labelMap?: { [key: string]: string; };
 }
@@ -21,10 +22,11 @@ interface FacetCheckboxProps {
  * @param filterState
  * @param facetCounts
  * @param expandable
+ * @param selectedFirst
  * @param labelMap  Optional map to override labels for certain values.
  * @constructor
  */
-const FacetCheckbox = ({appId, filterState, facetCounts, expandable, labelMap={}}: FacetCheckboxProps) => {
+const FacetCheckbox = ({appId, filterState, facetCounts, expandable, selectedFirst=false, labelMap={}}: FacetCheckboxProps) => {
 
   const CLASS = 'solang-facet-cb';
   const dispatch = useDispatch();
@@ -36,7 +38,6 @@ const FacetCheckbox = ({appId, filterState, facetCounts, expandable, labelMap={}
   const valuesCount = filterState.value?.length ?? 0;
   const expandableMin = Math.max(valuesCount, (expandable ?? 0));
   const isExpandable = expandable && (optionsCount > expandableMin);
-
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 
     let newState = [...filterState.value];
@@ -61,15 +62,16 @@ const FacetCheckbox = ({appId, filterState, facetCounts, expandable, labelMap={}
     // If a selected & b not return a
     const aIsSelected = filterState.value.includes(a.value);
     const bIsSelected = filterState.value.includes(b.value);
-    if ( aIsSelected && !bIsSelected) {
-      return -1
+    console.log(`sf ${selectedFirst}`)
+    if (selectedFirst) {
+      if ( aIsSelected && !bIsSelected) {
+        return -1
+      }
+      else if (!aIsSelected && bIsSelected) {
+        return 1
+      }
     }
-    else if (!aIsSelected && bIsSelected) {
-      return 1
-    }
-    else {
-      return a.value > b.value ? 1 : -1;
-    }
+    return a.value > b.value ? 1 : -1;
   });
 
   // Reduce options to list of renderable items.
