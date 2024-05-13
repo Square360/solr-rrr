@@ -62,7 +62,6 @@ const FacetCheckbox = ({appId, filterState, facetCounts, expandable, selectedFir
     // If a selected & b not return a
     const aIsSelected = filterState.value.includes(a.value);
     const bIsSelected = filterState.value.includes(b.value);
-    console.log(`sf ${selectedFirst}`)
     if (selectedFirst) {
       if ( aIsSelected && !bIsSelected) {
         return -1

@@ -69,7 +69,6 @@ const FullPager = ({appId, alias, text={}, handleClick}: MyProps) => {
 
   const setPageHandler = (e: React.MouseEvent<Element, MouseEvent>, page: number) => {
     e.preventDefault();
-    console.log(page);
     if (page < 1 ) page = 1;
     if (page > numPages ) page = numPages;
     const val = (page-1).toString() ;
