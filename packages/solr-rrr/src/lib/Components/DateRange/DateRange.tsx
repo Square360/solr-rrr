@@ -36,7 +36,6 @@ const DateRange = ({appId, alias, type, minTo, maxTo, minFrom, maxFrom, labels={
   const dispatch = useDispatch();
 
   const filterState = useSelector((state: ISolangState) => getFilterFromState(state.solang, appId, alias)) as IDateRangeState;
-
   const handleFromChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
     dispatch(setParam({appId: appId, key: `${alias}From`, value: value}));
@@ -67,7 +66,5 @@ const DateRange = ({appId, alias, type, minTo, maxTo, minFrom, maxFrom, labels={
              onChange={handleToChange}/>
     </div>
   );
-
 }
-
 export default DateRange;
