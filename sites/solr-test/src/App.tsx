@@ -31,7 +31,7 @@ function App() {
     country: withDefault(ArrayParam, []),
     city: withDefault(ArrayParam, []),
     page: withDefault(StringParam, '0'),
-    sort: withDefault(StringParam, ''),
+    sort: withDefault(StringParam, 'last_name_t desc'),
     publishedTo: withDefault(StringParam, ''),
     publishedFrom: withDefault(StringParam, ''),
   });
