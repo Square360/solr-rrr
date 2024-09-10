@@ -5,8 +5,6 @@ import {
   IFacetFilterState, IFormattedFacetOption
 } from "../../filters/FacetFilter";
 import FacetCheckboxItem from "./FacetCheckboxItem.tsx";
-
-
 interface FacetCheckboxProps {
   appId: string;
   filterState: IFacetFilterState;
@@ -75,10 +73,15 @@ const FacetCheckbox = ({appId, filterState, facetCounts, expandable, selectedFir
 
   // Reduce options to list of renderable items.
   const sliceOptions = (options: any[]) => {
-    const expandableMax = isExpandable
-      ? (_isExpanded ? -1 : Math.max(expandable, expandableMin))
-      : options.length;
-    return options.slice(0, expandableMax);
+    if (!isExpandable) {
+      return options;
+    }
+    if (_isExpanded) {
+      return options;
+    }
+    else {
+      return options.slice(0, expandable);
+    }
   }
 
   return (
