@@ -156,8 +156,8 @@ export const facetFilterGetCountsFromAppState = (app: ISolangApp, filterAlias: s
       else return 0;
     }
     else {
-      if (a.count < b.count) return -1;
-      else if (a.count > b.count) return 1;
+      if (a.count < b.count) return 1;
+      else if (a.count > b.count) return -1;
       else return 0;
     }
   });

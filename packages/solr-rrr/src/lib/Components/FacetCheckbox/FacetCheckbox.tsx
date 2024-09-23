@@ -68,7 +68,7 @@ const FacetCheckbox = ({appId, filterState, facetCounts, expandable, selectedFir
         return 1
       }
     }
-    return a.value > b.value ? 1 : -1;
+    return 0;
   });
 
   // Reduce options to list of renderable items.
